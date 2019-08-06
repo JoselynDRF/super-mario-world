@@ -1,6 +1,8 @@
 Library/*
 Builds/*
 Temp/*
+Logs/*
+.vscode
 *.sln
 *.csproj
 *.userprefs

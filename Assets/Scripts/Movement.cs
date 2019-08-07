@@ -7,7 +7,7 @@ public class Movement : MonoBehaviour {
   // Movement variables
   public float velX = 0.1f;
   public float movX;
-  public float inputX;
+  public float currentPosition;
 
   // Jump variables
   public float jumpingForce = 300f;
@@ -15,6 +15,13 @@ public class Movement : MonoBehaviour {
   public float radioFoot;
   public LayerMask floor;
   public bool inFloor;
+
+  // Animations
+  Animator animator;
+
+  void Awake() {
+    animator = GetComponent <Animator>();
+  }
 
   // Start is called before the first frame update
   void Start() {
@@ -29,12 +36,20 @@ public class Movement : MonoBehaviour {
       movX = transform.position.x + (inputX * velX);
       transform.position = new Vector3(movX, transform.position.y, 0);
       transform.localScale = new Vector3(1, 1, 1);
+      movX = currentPosition;
     }
 
     if (inputX < 0) {
       movX = transform.position.x + (inputX * velX);
       transform.position = new Vector3(movX, transform.position.y, 0);
       transform.localScale = new Vector3(-1, 1, 1);
+      movX = currentPosition;
+    }
+
+    if (inputX != 0) {
+      animator.SetFloat("velX", 1);
+    } else {
+      animator.SetFloat("velX", 0);
     }
 
     inFloor = Physics2D.OverlapCircle(foot.position, radioFoot, floor);

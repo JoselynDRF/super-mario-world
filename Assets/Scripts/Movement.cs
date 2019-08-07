@@ -37,7 +37,9 @@ public class Movement : MonoBehaviour {
       transform.localScale = new Vector3(-1, 1, 1);
     }
 
-    if (Input.GetKeyDown(KeyCode.Space)) {
+    inFloor = Physics2D.OverlapCircle(foot.position, radioFoot, floor);
+
+    if (inFloor && Input.GetKeyDown(KeyCode.Space)) {
       GetComponent <Rigidbody2D>().AddForce (new Vector2(0, jumpingForce));
     }
   }

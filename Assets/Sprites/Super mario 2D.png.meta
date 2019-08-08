@@ -31,7 +31,7 @@ TextureImporter:
     second: Super mario 2D_8
   - first:
       213: 5033725719102301934
-    second: Super mario 2D_9
+    second: down
   - first:
       213: 6269326547267204741
     second: Super mario 2D_10
@@ -668,7 +668,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Super mario 2D_9
+      name: down
       rect:
         serializedVersion: 2
         x: 156

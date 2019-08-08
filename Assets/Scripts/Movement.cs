@@ -16,6 +16,9 @@ public class Movement : MonoBehaviour {
   public LayerMask floor;
   public bool inFloor;
 
+  // Down variables
+  public bool isDown;
+
   // Animations
   Animator animator;
 
@@ -32,18 +35,20 @@ public class Movement : MonoBehaviour {
   void FixedUpdate() {
     float inputX = Input.GetAxis("Horizontal");
 
-    if (inputX > 0) {
-      movX = transform.position.x + (inputX * velX);
-      transform.position = new Vector3(movX, transform.position.y, 0);
-      transform.localScale = new Vector3(1, 1, 1);
-      movX = currentPosition;
-    }
+    if (!isDown) {
+      if (inputX > 0) {
+        movX = transform.position.x + (inputX * velX);
+        transform.position = new Vector3(movX, transform.position.y, 0);
+        transform.localScale = new Vector3(1, 1, 1);
+        movX = currentPosition;
+      }
 
-    if (inputX < 0) {
-      movX = transform.position.x + (inputX * velX);
-      transform.position = new Vector3(movX, transform.position.y, 0);
-      transform.localScale = new Vector3(-1, 1, 1);
-      movX = currentPosition;
+      if (inputX < 0) {
+        movX = transform.position.x + (inputX * velX);
+        transform.position = new Vector3(movX, transform.position.y, 0);
+        transform.localScale = new Vector3(-1, 1, 1);
+        movX = currentPosition;
+      }
     }
 
     if (inputX != 0 && inFloor) {
@@ -56,13 +61,21 @@ public class Movement : MonoBehaviour {
 
     if (inFloor) {
       animator.SetBool("inFloor", true);
+
+      if (Input.GetKeyDown(KeyCode.Space) && !isDown) {
+        GetComponent <Rigidbody2D>().AddForce (new Vector2(0, jumpingForce));
+        animator.SetBool("inFloor", false);
+      }
     } else {
       animator.SetBool("inFloor", false);
     }
 
-    if (inFloor && Input.GetKeyDown(KeyCode.Space)) {
-      GetComponent <Rigidbody2D>().AddForce (new Vector2(0, jumpingForce));
-      animator.SetBool("inFloor", false);
+    if (inFloor && Input.GetKey(KeyCode.DownArrow)) {
+      animator.SetBool("isDown", true);
+      isDown = true;
+    } else {
+      animator.SetBool("isDown", false);
+      isDown = false;
     }
   }
 }

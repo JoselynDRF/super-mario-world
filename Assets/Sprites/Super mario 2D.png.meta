@@ -58,7 +58,7 @@ TextureImporter:
     second: Super mario 2D_17
   - first:
       213: -3604370573029938518
-    second: Super mario 2D_18
+    second: lookUp
   - first:
       213: -8507541827785355451
     second: Super mario 2D_19
@@ -857,7 +857,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Super mario 2D_18
+      name: lookUp
       rect:
         serializedVersion: 2
         x: 309

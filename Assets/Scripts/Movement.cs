@@ -19,6 +19,9 @@ public class Movement : MonoBehaviour {
   // Down variables
   public bool isDown;
 
+  // Look Up variables
+  public bool lookUp;
+
   // Animations
   Animator animator;
 
@@ -35,7 +38,7 @@ public class Movement : MonoBehaviour {
   void FixedUpdate() {
     float inputX = Input.GetAxis("Horizontal");
 
-    if (!isDown) {
+    if (!isDown && !lookUp) {
       if (inputX > 0) {
         movX = transform.position.x + (inputX * velX);
         transform.position = new Vector3(movX, transform.position.y, 0);
@@ -70,12 +73,24 @@ public class Movement : MonoBehaviour {
       animator.SetBool("inFloor", false);
     }
 
+    // Crouch
     if (inFloor && Input.GetKey(KeyCode.DownArrow)) {
       animator.SetBool("isDown", true);
       isDown = true;
     } else {
       animator.SetBool("isDown", false);
       isDown = false;
+    }
+
+    // Look up
+    if (inputX == 0) {
+      if (inFloor && Input.GetKey(KeyCode.UpArrow)) {
+        animator.SetBool("lookUp", true);
+        lookUp = true;
+      } else {
+        animator.SetBool("lookUp", false);
+        lookUp = false;
+      }
     }
   }
 }

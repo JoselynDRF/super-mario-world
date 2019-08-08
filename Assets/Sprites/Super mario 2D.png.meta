@@ -4,10 +4,10 @@ TextureImporter:
   internalIDToNameTable:
   - first:
       213: -7753423539348239677
-    second: Super mario 2D_0
+    second: stay
   - first:
       213: -3674845307518063120
-    second: Super mario 2D_1
+    second: move
   - first:
       213: -3556674826025037852
     second: Super mario 2D_2
@@ -22,7 +22,7 @@ TextureImporter:
     second: Super mario 2D_5
   - first:
       213: -1492899252437948481
-    second: Super mario 2D_6
+    second: jump
   - first:
       213: 4019176088862049246
     second: Super mario 2D_7
@@ -479,7 +479,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Super mario 2D_0
+      name: stay
       rect:
         serializedVersion: 2
         x: 3
@@ -500,7 +500,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Super mario 2D_1
+      name: move
       rect:
         serializedVersion: 2
         x: 20
@@ -605,7 +605,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Super mario 2D_6
+      name: jump
       rect:
         serializedVersion: 2
         x: 104
@@ -3217,7 +3217,7 @@ TextureImporter:
         width: 7
         height: 75
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

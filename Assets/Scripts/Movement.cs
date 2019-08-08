@@ -46,7 +46,7 @@ public class Movement : MonoBehaviour {
       movX = currentPosition;
     }
 
-    if (inputX != 0) {
+    if (inputX != 0 && inFloor) {
       animator.SetFloat("velX", 1);
     } else {
       animator.SetFloat("velX", 0);
@@ -54,8 +54,15 @@ public class Movement : MonoBehaviour {
 
     inFloor = Physics2D.OverlapCircle(foot.position, radioFoot, floor);
 
+    if (inFloor) {
+      animator.SetBool("inFloor", true);
+    } else {
+      animator.SetBool("inFloor", false);
+    }
+
     if (inFloor && Input.GetKeyDown(KeyCode.Space)) {
       GetComponent <Rigidbody2D>().AddForce (new Vector2(0, jumpingForce));
+      animator.SetBool("inFloor", false);
     }
   }
 }

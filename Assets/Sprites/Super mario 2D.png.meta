@@ -25,7 +25,7 @@ TextureImporter:
     second: jump
   - first:
       213: 4019176088862049246
-    second: Super mario 2D_7
+    second: fallDown
   - first:
       213: -293923835648385020
     second: Super mario 2D_8
@@ -626,7 +626,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Super mario 2D_7
+      name: fallDown
       rect:
         serializedVersion: 2
         x: 121

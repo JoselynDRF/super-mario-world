@@ -25,8 +25,13 @@ public class Movement : MonoBehaviour {
   // Animations
   Animator animator;
 
+  // Fall out variables
+  Rigidbody2D rb;
+  public float fallDown;
+
   void Awake() {
     animator = GetComponent <Animator>();
+    rb = GetComponent <Rigidbody2D>();
   }
 
   // Start is called before the first frame update
@@ -92,5 +97,13 @@ public class Movement : MonoBehaviour {
         lookUp = false;
       }
     }
+
+    // Fall down
+    fallDown = rb.velocity.y;
+
+    if (fallDown != 0 || fallDown == 0) {
+      animator.SetFloat("velY", fallDown);
+    }
+
   }
 }

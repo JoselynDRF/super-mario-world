@@ -49,13 +49,13 @@ TextureImporter:
     second: Super mario 2D_14
   - first:
       213: -6007034144975334154
-    second: Super mario 2D_15
+    second: turbo_1
   - first:
       213: 3508884450773967299
-    second: Super mario 2D_16
+    second: turbo_2
   - first:
       213: 8973148296726714829
-    second: Super mario 2D_17
+    second: turboJump
   - first:
       213: -3604370573029938518
     second: lookUp
@@ -794,7 +794,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Super mario 2D_15
+      name: turbo_1
       rect:
         serializedVersion: 2
         x: 257
@@ -815,7 +815,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Super mario 2D_16
+      name: turbo_2
       rect:
         serializedVersion: 2
         x: 274
@@ -836,7 +836,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Super mario 2D_17
+      name: turboJump
       rect:
         serializedVersion: 2
         x: 291

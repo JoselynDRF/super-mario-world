@@ -4,7 +4,7 @@ using UnityEngine;
 public class Movement : MonoBehaviour {
 
   // Movement variables
-  public float velX = 0.1f;
+  public float velX = 0.03f;
   public float movX;
   public float currentPosition;
 
@@ -25,6 +25,15 @@ public class Movement : MonoBehaviour {
   public int skid;
   public int right;
   public int left;
+
+  // Run variables
+  public bool run;
+
+  // Turbo variables
+  public bool turbo;
+
+  // Turbo jump variables
+  public bool turboJump;
 
   // Animations
   Animator animator;
@@ -74,7 +83,7 @@ public class Movement : MonoBehaviour {
     if (inFloor) {
       animator.SetBool("inFloor", true);
 
-      if (Input.GetKeyDown(KeyCode.Space) && !isDown) {
+      if (Input.GetKeyDown(KeyCode.X) && !isDown) {
         GetComponent <Rigidbody2D>().AddForce (new Vector2(0, jumpingForce));
         animator.SetBool("inFloor", false);
       }
@@ -140,15 +149,65 @@ public class Movement : MonoBehaviour {
     if (skid == -1 && Input.GetKey(KeyCode.RightArrow)) {
       animator.SetBool("skid", true);
       StartCoroutine(WaitTime());
-    }  
+    }
+
+    // Run
+    if (inputX > 0 || inputX < 0) {
+      if (Input.GetKey(KeyCode.Z)) {
+        run = true;
+        velX = 0.06f;
+        animator.SetBool("run", true);
+        StartCoroutine(Turbo());
+      } else {
+        run = false;
+        velX = 0.03f;
+        turbo = false;
+        animator.SetBool("run", false);
+      }
+    }
+
+    if (inputX == 0) {
+      animator.SetBool("run", false);
+      animator.SetBool("turbo", false);
+      animator.SetBool("turboJump", false);
+    }
+
+    // Turbo
+    if (inputX > 0 || inputX < 0) {
+      if (turbo) {
+        animator.SetBool("turbo", true);
+      } else {
+        animator.SetBool("turbo", false);
+      }
+    }
+
+    // Turbo jump
+    if (inputX > 0 || inputX < 0) {
+      if (turbo && Input.GetKey(KeyCode.X)) {
+        animator.SetBool("turboJump", true);
+      } else {
+        animator.SetBool("turboJump", false);
+      }
+    }
   }
 
-  // Coroutine
+  // Coroutines
   public IEnumerator WaitTime() {
     yield return new WaitForSeconds(0.3f);
     skid = 0;
     right = 0;
     left = 0;
     animator.SetBool("skid", false);
+  }
+
+  public IEnumerator Turbo() {
+    yield return new WaitForSeconds(0.5f);
+
+    if (run) {
+      velX = 0.15f;
+      turbo = true;
+    } else {
+      StopCoroutine(Turbo());
+    }
   }
 }

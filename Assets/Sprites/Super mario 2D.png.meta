@@ -28,7 +28,7 @@ TextureImporter:
     second: fallDown
   - first:
       213: -293923835648385020
-    second: Super mario 2D_8
+    second: skid
   - first:
       213: 5033725719102301934
     second: down
@@ -647,7 +647,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Super mario 2D_8
+      name: skid
       rect:
         serializedVersion: 2
         x: 139

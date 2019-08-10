@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Movement : MonoBehaviour {
@@ -21,6 +20,11 @@ public class Movement : MonoBehaviour {
 
   // Look Up variables
   public bool lookUp;
+
+  // Skid variables
+  public int skid;
+  public int right;
+  public int left;
 
   // Animations
   Animator animator;
@@ -105,5 +109,46 @@ public class Movement : MonoBehaviour {
       animator.SetFloat("velY", fallDown);
     }
 
+    // Skid
+    if (!Input.GetKey(KeyCode.LeftArrow) && !Input.GetKey(KeyCode.RightArrow)) {
+      StartCoroutine(WaitTime());
+    }
+
+    // Skid right --> left
+    if (inputX > 0.5f) {
+      right = 1;
+    }
+
+    if (right == 1) {
+      skid = 1;
+    }
+
+    if (skid == 1 && Input.GetKey(KeyCode.LeftArrow)) {
+      animator.SetBool("skid", true);
+      StartCoroutine(WaitTime());
+    }
+
+    // Skid left --> right
+    if (inputX < 0) {
+      left = 1;
+    }
+
+    if (left == 1) {
+      skid = -1;
+    }
+
+    if (skid == -1 && Input.GetKey(KeyCode.RightArrow)) {
+      animator.SetBool("skid", true);
+      StartCoroutine(WaitTime());
+    }  
+  }
+
+  // Coroutine
+  public IEnumerator WaitTime() {
+    yield return new WaitForSeconds(0.3f);
+    skid = 0;
+    right = 0;
+    left = 0;
+    animator.SetBool("skid", false);
   }
 }

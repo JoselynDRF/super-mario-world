@@ -7,11 +7,12 @@ public class Movement : MonoBehaviour {
   public float velX = 0.03f;
   public float movX;
   public float currentPosition;
+  public bool lookingRight;
 
   // Jump variables
-  public float jumpingForce = 300f;
+  public float jumpingForce = 100f;
   public Transform foot;
-  public float radioFoot;
+  public float radioFoot = 0.08f;
   public LayerMask floor;
   public bool inFloor;
 
@@ -34,6 +35,15 @@ public class Movement : MonoBehaviour {
 
   // Turbo jump variables
   public bool turboJump;
+
+  // Shell variables
+  public float kick = 500f;
+  public Transform hand;
+  public float radioHand = 0.07f;
+  public LayerMask shell;
+  public bool getShell;
+  public GameObject Shell;
+  public GameObject Mario;
 
   // Animations
   Animator animator;
@@ -62,6 +72,7 @@ public class Movement : MonoBehaviour {
         transform.position = new Vector3(movX, transform.position.y, 0);
         transform.localScale = new Vector3(1, 1, 1);
         movX = currentPosition;
+        lookingRight = true;
       }
 
       if (inputX < 0) {
@@ -69,6 +80,7 @@ public class Movement : MonoBehaviour {
         transform.position = new Vector3(movX, transform.position.y, 0);
         transform.localScale = new Vector3(-1, 1, 1);
         movX = currentPosition;
+        lookingRight = false;
       }
     }
 
@@ -187,6 +199,34 @@ public class Movement : MonoBehaviour {
         animator.SetBool("turboJump", true);
       } else {
         animator.SetBool("turboJump", false);
+      }
+    }
+
+    // Shell
+    getShell = Physics2D.OverlapCircle(hand.position, radioHand, shell);
+    if (getShell && lookingRight) {
+      if (Input.GetKey(KeyCode.Z)) {
+        Shell.transform.parent = Mario.transform;
+        Shell.GetComponent<Rigidbody2D>().gravityScale = 0;
+        Shell.GetComponent<Rigidbody2D>().isKinematic = true;
+      } else {
+        Shell.GetComponent<Rigidbody2D>().AddForce(new Vector2(kick, 0));
+        Shell.transform.parent = null;
+        Shell.GetComponent<Rigidbody2D>().gravityScale = 2;
+        Shell.GetComponent<Rigidbody2D>().isKinematic = false;
+      }
+    }
+
+    if (getShell && !lookingRight) {
+      if (Input.GetKey(KeyCode.Z)) {
+        Shell.transform.parent = Mario.transform;
+        Shell.GetComponent<Rigidbody2D>().gravityScale = 0;
+        Shell.GetComponent<Rigidbody2D>().isKinematic = true;
+      } else {
+        Shell.GetComponent<Rigidbody2D>().AddForce(new Vector2(kick*-1, 0));
+        Shell.transform.parent = null;
+        Shell.GetComponent<Rigidbody2D>().gravityScale = 2;
+        Shell.GetComponent<Rigidbody2D>().isKinematic = false;
       }
     }
   }

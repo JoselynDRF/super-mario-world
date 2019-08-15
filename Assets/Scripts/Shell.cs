@@ -8,6 +8,7 @@ public class Shell : MonoBehaviour {
 	public bool rebound;
 	public Transform bouncePosition;
 	public float radioShell;
+	public float radioFootShell;
 	public LayerMask floor;
 	public LayerMask objectRebound;
 
@@ -31,6 +32,7 @@ public class Shell : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate() {
 		velShell = rb.velocity.x;
+		animator.SetFloat("velX", Mathf.Abs(velShell));
 		rebound = Physics2D.OverlapCircle(bouncePosition.position, radioShell, objectRebound);
 
 		if (velShell != 0) {
@@ -42,6 +44,15 @@ public class Shell : MonoBehaviour {
 
 			if (rebound && impulse < 0) {
 				this.rb.AddForce(new Vector2(bounceForce, 0));
+			}
+
+			// Shell in floor
+			inFloorShell = Physics2D.OverlapCircle(ShellFoot.position, radioFootShell, floor);
+
+			if (inFloorShell) {
+				rb.constraints = RigidbodyConstraints2D.FreezePositionY;
+			} else {
+				rb.constraints = RigidbodyConstraints2D.FreezeRotation;
 			}
 		}
 	}

@@ -1832,6 +1832,25 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 3722952846092406341}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &1548992586
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1548992585}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0082f65e10d05354b8fdadf2909d3787, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1561792085
 GameObject:
   m_ObjectHideFlags: 0
@@ -2082,6 +2101,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3722952844946296334, guid: 7c2d68455bd402e4699f3b3fba8a019d,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 7165e54fa000a0a49b365477a054c291, type: 2}
+    - target: {fileID: 3722952844946296335, guid: 7c2d68455bd402e4699f3b3fba8a019d,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: 7165e54fa000a0a49b365477a054c291, type: 2}
     - target: {fileID: 96902504580161971, guid: 7c2d68455bd402e4699f3b3fba8a019d,
         type: 3}
       propertyPath: Mario

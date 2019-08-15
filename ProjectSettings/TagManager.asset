@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Mario
+  - Foot
+  - RedTurtle
   layers:
   - Default
   - TransparentFX
@@ -20,7 +22,7 @@ TagManager:
   - Characters
   - Shell
   - Items
-  - 
+  - Enemies
   - 
   - 
   - 
